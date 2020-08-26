@@ -24,12 +24,12 @@ public class AdminCustomerRepoImpl implements AdminCustomerRepo {
 			select * from tbl_customer c
 			inner join documentdetails d on d.customerid = c.customerid
 			inner join incomedetails i on i.customerid = c.customerid
-			inner join loan l on l.customerid = c.customerid 
-			inner join loandetails ld on ld.loanid = l.loanid 
+			inner join loan l on l.customerid = c.customerid  
 			inner join propertydetails p on p.loanid = l.loanid 
 			where l.loanStatus="eligible";
 		*/
-		String query = "";
+		String query = "select c from Customer c join fetch c.documentDetails d join fetch c.incomeDetails i "
+				+ "join fetch c.loan l join fetch l.propertyDetails where l.loanStatus='eligible'";
 		return entityManager
 				.createQuery(query)
 				.getResultList();
@@ -43,9 +43,10 @@ public class AdminCustomerRepoImpl implements AdminCustomerRepo {
 	@Override
 	public Loan findLoanByCustomerId(int id) {
 		//select * from loan l inner join tbl_customer c on c.customerid=l.customerid where customerid = id;
-		String query = "";
+		String query = "select l from Loan l join Customer c where c.customerid = :cid";
 		return (Loan) entityManager
 				.createQuery(query)
+				.setParameter("cid", id)
 				.getSingleResult();
 	}
 

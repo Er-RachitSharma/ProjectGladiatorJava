@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,11 +18,15 @@ public class Loan {
 	@OneToOne
 	@JoinColumn(name ="customerid")
 	private Customer customer;
-	@Column(name="amounteligible")
-	private double amountEligible;
+	@Column(name="amountpassed")
+	private double amountPassed;
 	@Column(name="loanstatus")
 	private String loanStatus;
-	public int getloanId() {
+		
+	@OneToOne(mappedBy = "loan")
+	private PropertyDetails propertyDetails;
+	
+	public int getLoanId() {
 		return loanId;
 	}
 	public void setLoanId(int loanId) {
@@ -35,17 +38,23 @@ public class Loan {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public double getAmountEligible() {
-		return amountEligible;
-	}
-	public void setAmountEligible(double amountEligible) {
-		this.amountEligible = amountEligible;
-	}
 	public String getLoanStatus() {
 		return loanStatus;
 	}
 	public void setLoanStatus(String loanStatus) {
 		this.loanStatus = loanStatus;
+	}
+	public double getAmountPassed() {
+		return amountPassed;
+	}
+	public void setAmountPassed(double amountPassed) {
+		this.amountPassed = amountPassed;
+	}
+	public PropertyDetails getPropertyDetails() {
+		return propertyDetails;
+	}
+	public void setPropertyDetails(PropertyDetails propertyDetails) {
+		this.propertyDetails = propertyDetails;
 	}
 	
 }

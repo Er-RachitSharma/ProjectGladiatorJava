@@ -29,7 +29,6 @@ public class IncomeController {
 			System.out.println(incomeDetails);
 			incomeDetails.setIncome(incomeDto.getIncome());
 			incomeDetails.setEmployerName(incomeDto.getEmployerName());
-			incomeDetails.setOrganizationName(incomeDto.getOrganizationName());
 			incomeDetails.setOrganizationType(incomeDto.getOrganizationType());
 			incomeDetails.setTypeOfEmployment(incomeDto.getTypeOfEmployment());
 			incomeDetails.setAmountNeeded(incomeDto.getAmountNeeded());

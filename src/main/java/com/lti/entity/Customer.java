@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 //import com.lti.dto.CustomerDto.GENDER;
@@ -30,14 +32,45 @@ public class Customer {
 	@Column(name="dateofbirth")
 	private LocalDate dateOfBirth;
 	
-	
-	
 	@Column(name="password")
 	private String password;
 	
 	@Column(name ="email")
 	private String email;
 	
+	@OneToOne(mappedBy = "customer")
+	private DocumentDetails documentDetails;
+	
+	@OneToOne(mappedBy = "customer")
+	private IncomeDetails incomeDetails;
+	
+	@OneToOne(mappedBy = "customer")
+	private Loan loan;
+	
+	public DocumentDetails getDocumentDetails() {
+		return documentDetails;
+	}
+
+	public void setDocumentDetails(DocumentDetails documentDetails) {
+		this.documentDetails = documentDetails;
+	}
+
+	public IncomeDetails getIncomeDetails() {
+		return incomeDetails;
+	}
+
+	public void setIncomeDetails(IncomeDetails incomeDetails) {
+		this.incomeDetails = incomeDetails;
+	}
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
 	public String getEmail() {
 		return email;
 	}

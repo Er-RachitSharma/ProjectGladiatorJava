@@ -2,11 +2,14 @@ package com.lti.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.AdminDto;
@@ -33,7 +36,7 @@ public class AdminController {
 	
 	//For fetching the applicant by the customerId entered by the Admin
 	
-	@PostMapping(path = "/viewSelectedApplicant.api", produces = "application/json", consumes = "applicatio/json")
+	@PostMapping(path = "/viewSelectedApplicant.api", produces = "application/json", consumes = "application/json")
 	public Customer getSelectedApplicant(@RequestBody AdminDto adminDto) {
 		Customer customer = adminCustomerRepo.findCustomerByCustomerId(adminDto.getId());
 		return customer;
@@ -41,13 +44,8 @@ public class AdminController {
 	
 	
 	
-	//For updating the loanStatus of the selected applicant
-	
-	//=====================================================
-	//========================DOUBT========================
-	//=====================================================
-	
-	public void updateLoanStatus(int id, String loanStatus) {
+	@GetMapping("/update.api")
+	public void updateLoanStatus(@RequestParam("customerId") int id, @RequestParam("loanStatus") String loanStatus, HttpServletRequest request) {
 		Loan loan = adminCustomerRepo.findLoanByCustomerId(id);
 		loan.setLoanStatus(loanStatus);
 		adminCustomerRepo.save(loan);

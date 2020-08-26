@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +25,7 @@ public class IncomeDetails {
 	public String toString() {
 		return "IncomeDetails [detailsId=" + detailsId + ", customer=" + customer + ", income=" + income
 				+ ", typeOfEmployment=" + typeOfEmployment + ", organizationType=" + organizationType
-				+ ", organizationName=" + organizationName + ", employerName=" + employerName + "]";
+				+ ", employerName=" + employerName + "]";
 	}
 
 	@Column(name="income")
@@ -35,8 +34,6 @@ public class IncomeDetails {
 	private String typeOfEmployment;
 	@Column(name="organizationtype")
 	private String organizationType;
-	@Column(name="organizationname")
-	private String organizationName;
 	@Column(name="employername")
 	private String employerName;
 	
@@ -112,14 +109,6 @@ public class IncomeDetails {
 
 	public void setOrganizationType(String organizationType) {
 		this.organizationType = organizationType;
-	}
-
-	public String getOrganizationName() {
-		return organizationName;
-	}
-
-	public void setOrganizationName(String organizationName) {
-		this.organizationName = organizationName;
 	}
 
 	public String getEmployerName() {

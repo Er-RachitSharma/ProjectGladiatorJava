@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
-@Table(name = "DocumentDetails")
+@Table(name = "documentdetails")
 public class DocumentDetails {
 	
 	@Id

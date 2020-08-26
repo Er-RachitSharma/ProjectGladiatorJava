@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.entity.Customer;
 import com.lti.entity.Customer.GENDER;
@@ -27,14 +26,14 @@ class  LoanServerApplicationTests {
 	void add() {
 		Customer c = new Customer();
 		
-		c.setCustomerName("Varun");
-		c.setEmail("varun@lti.com");
-		c.setPassword("john");
-		c.setDateOfBirth(LocalDate.of(1999,02, 07));
-		c.setPhone("9911652");
+		c.setCustomerName("Rachit");
+		c.setEmail("Rachit@lti.com");
+		c.setPassword("123456");
+		c.setDateOfBirth(LocalDate.of(1998, 9, 15));
+		c.setPhone("1122334455");
 		c.setNationality("Indian");
-		c.setAadharNo("9856260974");
-		c.setPanNo("XCR63");
+		c.setAadharNo("1234567890");
+		c.setPanNo("ABC14");
 		c.setGender(GENDER.MALE);
 		
 
@@ -56,8 +55,8 @@ class  LoanServerApplicationTests {
 @Test
 	void findByUsernamePassword() {
 
-		long id = customerRepo.findByUsernamePassword("john@lti.com", "john");
-		System.out.println("Customer id is"+id);
+		long id = customerRepo.findByUsernamePassword("Rachit@lti.com", "123456");
+		System.out.println("Customer id is "+id);
 		// assert missing
 	}
 }
