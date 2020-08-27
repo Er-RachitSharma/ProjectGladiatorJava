@@ -1,7 +1,10 @@
 package com.lti.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +15,7 @@ import com.lti.entity.Loan;
 import com.lti.entity.LoanDetails;
 import com.lti.entity.PropertyDetails;
 import com.lti.exception.IncomeServiceException;
+import com.lti.service.PersonalDetailsService;
 import com.lti.service.PropertyService;
 
 @RestController
@@ -51,5 +55,6 @@ public class PropertyController {
 			status.setStatus(StatusDto.StatusType.FAILURE);
 			return status;
 		}
-		}
 	}
+	
+}

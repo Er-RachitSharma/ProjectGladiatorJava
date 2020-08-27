@@ -40,7 +40,8 @@ public class UploadController {
 				MultipartFile file = files[i];
 				try {
 					byte[] bytes = file.getBytes(); //content to array of bytes
-
+					//Can also use mkdir..
+					
 					File uploadFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
 					BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(uploadFile));
 					outputStream.write(bytes);
