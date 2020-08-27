@@ -9,6 +9,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "incomedetails")
 @NamedQuery(name = "is-present", query = ("select count(c.customer) from IncomeDetails c where c.customer= :customerId"))
@@ -18,22 +20,16 @@ public class IncomeDetails {
 	@GeneratedValue
 	@Column(name="detailsid")
 	private int detailsId;
-	@OneToOne
-	@JoinColumn(name = "customerid")
-	private Customer customer;
-	@Override
-	public String toString() {
-		return "IncomeDetails [detailsId=" + detailsId + ", customer=" + customer + ", income=" + income
-				+ ", typeOfEmployment=" + typeOfEmployment + ", organizationType=" + organizationType
-				+ ", employerName=" + employerName + "]";
-	}
 
 	@Column(name="income")
 	private double income;
+	
 	@Column(name="typeofemployment")
 	private String typeOfEmployment;
+	
 	@Column(name="organizationtype")
 	private String organizationType;
+	
 	@Column(name="employername")
 	private String employerName;
 	
@@ -42,10 +38,14 @@ public class IncomeDetails {
 	
 	@Column(name ="tenure")
 	private int tenure;
+	
 	@Column(name ="workingyears")
 	private int workingYears;
-	
-	
+
+	@OneToOne
+	@JoinColumn(name = "customerid")
+	@JsonIgnore
+	private Customer customer;
 
 	public double getAmountNeeded() {
 		return amountNeeded;
@@ -117,6 +117,13 @@ public class IncomeDetails {
 
 	public void setEmployerName(String employerName) {
 		this.employerName = employerName;
+	}
+	
+	@Override
+	public String toString() {
+		return "IncomeDetails [detailsId=" + detailsId + ", customer=" + customer + ", income=" + income
+				+ ", typeOfEmployment=" + typeOfEmployment + ", organizationType=" + organizationType
+				+ ", employerName=" + employerName + "]";
 	}
 
 }

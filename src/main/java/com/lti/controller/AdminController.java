@@ -7,12 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.dto.AdminDto;
 import com.lti.entity.Customer;
 import com.lti.entity.Loan;
 import com.lti.repository.AdminCustomerRepo;
@@ -26,7 +23,7 @@ public class AdminController {
 	
 	//For fetching all the applicants who have loanStatus="eligible"
 	
-	@GetMapping(path = "/viewEligibleApplicants.api", produces = "application/json")
+	@GetMapping(path = "/viewEligibleApplicants", produces = "application/json")
 	public List<Customer> getEligibleApplicants() {
 		List<Customer> list = adminCustomerRepo.findByLoanStatus();
 		return list;
@@ -36,16 +33,16 @@ public class AdminController {
 	
 	//For fetching the applicant by the customerId entered by the Admin
 	
-	@PostMapping(path = "/viewSelectedApplicant.api", produces = "application/json", consumes = "application/json")
-	public Customer getSelectedApplicant(@RequestBody AdminDto adminDto) {
-		Customer customer = adminCustomerRepo.findCustomerByCustomerId(adminDto.getId());
+	@GetMapping(path = "/viewSelectedApplicant", produces = "application/json")
+	public Customer getSelectedApplicant(@RequestParam("customerId") long id, HttpServletRequest request) {
+		Customer customer = adminCustomerRepo.findCustomerByCustomerId(id);
 		return customer;
 	}
 	
 	
 	
-	@GetMapping("/update.api")
-	public void updateLoanStatus(@RequestParam("customerId") int id, @RequestParam("loanStatus") String loanStatus, HttpServletRequest request) {
+	@GetMapping("/update")
+	public void updateLoanStatus(@RequestParam("customerId") long id, @RequestParam("loanStatus") String loanStatus, HttpServletRequest request) {
 		Loan loan = adminCustomerRepo.findLoanByCustomerId(id);
 		loan.setLoanStatus(loanStatus);
 		adminCustomerRepo.save(loan);

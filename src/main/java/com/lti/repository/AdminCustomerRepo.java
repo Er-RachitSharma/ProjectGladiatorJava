@@ -9,9 +9,9 @@ public interface AdminCustomerRepo {
 
 	List<Customer> findByLoanStatus();
 
-	Customer findCustomerByCustomerId(int id);
+	Customer findCustomerByCustomerId(long id);
 	
-	Loan findLoanByCustomerId(int id);
+	Loan findLoanByCustomerId(long id);
 	
 	void save(Loan loan);
 

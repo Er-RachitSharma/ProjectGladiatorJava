@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "documentdetails")
 public class DocumentDetails {
@@ -13,15 +16,19 @@ public class DocumentDetails {
 	@Id
 	@GeneratedValue
 	private int documentsId;
-	@OneToOne
-	@JoinColumn(name = "customerId")
-	private Customer customer;
+	
 	private String panCard;
 	private String voterId;
 	private String salarySlip;
 	private String loa;
 	private String nocFormBuilder;
 	private String agreementToSale;
+	
+	@OneToOne
+	@JoinColumn(name = "customerId")
+	@JsonIgnore
+	private Customer customer;
+	
 	public int getDocumentsId() {
 		return documentsId;
 	}

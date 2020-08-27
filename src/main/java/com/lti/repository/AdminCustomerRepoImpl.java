@@ -20,30 +20,22 @@ public class AdminCustomerRepoImpl implements AdminCustomerRepo {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Customer> findByLoanStatus() { 
-		/*
-			select * from tbl_customer c
-			inner join documentdetails d on d.customerid = c.customerid
-			inner join incomedetails i on i.customerid = c.customerid
-			inner join loan l on l.customerid = c.customerid  
-			inner join propertydetails p on p.loanid = l.loanid 
-			where l.loanStatus="eligible";
-		*/
-		String query = "select c from Customer c join fetch c.documentDetails d join fetch c.incomeDetails i "
-				+ "join fetch c.loan l join fetch l.propertyDetails where l.loanStatus='eligible'";
+//		String query = "select c from Customer c inner join c.documentDetails d inner join c.incomeDetails i "
+//				+ "inner join c.loan l inner join l.propertyDetails where l.loanStatus='eligible'";
+		String query = "select c from Customer c inner join c.loan l where l.loanStatus='eligible'";
 		return entityManager
 				.createQuery(query)
 				.getResultList();
 	}
 	
 	@Override
-	public Customer findCustomerByCustomerId(int id) {
+	public Customer findCustomerByCustomerId(long id) {
 		return entityManager.find(Customer.class, id);
 	}
 
 	@Override
-	public Loan findLoanByCustomerId(int id) {
-		//select * from loan l inner join tbl_customer c on c.customerid=l.customerid where customerid = id;
-		String query = "select l from Loan l join Customer c where c.customerid = :cid";
+	public Loan findLoanByCustomerId(long id) {
+		String query = "select l from Loan l inner join l.customer c where c.customerId = :cid";
 		return (Loan) entityManager
 				.createQuery(query)
 				.setParameter("cid", id)
