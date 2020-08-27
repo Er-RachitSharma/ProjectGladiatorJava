@@ -3,19 +3,20 @@ package com.lti.dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class DocumentUploadDto {
-	private double accountNo;
-	public double getAccountNo() {
-		return accountNo;
-	}
-	public void setAccountNo(double accountNo) {
-		this.accountNo = accountNo;
-	}
+	//private int customerId;
 	private MultipartFile panCard;
 	private MultipartFile voterId;
 	private MultipartFile salarySlip;
 	private MultipartFile loa;
 	private MultipartFile nocFormBuilder;
 	private MultipartFile agreementToSale;
+	private int customerId;
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 	public MultipartFile getPanCard() {
 		return panCard;
 	}
