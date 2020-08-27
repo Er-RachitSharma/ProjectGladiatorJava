@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name ="propertydetails")
 public class PropertyDetails {
@@ -17,16 +19,20 @@ public class PropertyDetails {
 	@Column(name="propertyid")
 	private int propertyId;
 	
-	@ManyToOne
-	@JoinColumn(name ="loanid")
-	private Loan loan;
 	@Column(name="propertyname")
 	private String propertyName;
+	
 	@Column(name="estimatedamount")
 	private double estimatedAmount;
+	
 	@Column(name="propertlocation")
 	private String propertyLocation;
-	//private String propertLocation;
+	
+	@ManyToOne
+	@JoinColumn(name ="loanid")
+	@JsonIgnore
+	private Loan loan;
+	
 	public int getPropertyId() {
 		return propertyId;
 	}
