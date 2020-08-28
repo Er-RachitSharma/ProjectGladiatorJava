@@ -26,14 +26,14 @@ class  LoanServerApplicationTests {
 	void add() {
 		Customer c = new Customer();
 		
-		c.setCustomerName("Rachit");
-		c.setEmail("Rachit@lti.com");
-		c.setPassword("123456");
-		c.setDateOfBirth(LocalDate.of(1998, 9, 15));
-		c.setPhone("1122334455");
+		c.setCustomerName("Akshay");
+		c.setEmail("Akshayt@lti.com");
+		c.setPassword("1234");
+		c.setDateOfBirth(LocalDate.of(1990, 1, 1));
+		c.setPhone("1231234566");
 		c.setNationality("Indian");
-		c.setAadharNo("1234567890");
-		c.setPanNo("ABC14");
+		c.setAadharNo("134679852");
+		c.setPanNo("PQR20");
 		c.setGender(GENDER.MALE);
 		
 

@@ -20,8 +20,6 @@ public class AdminCustomerRepoImpl implements AdminCustomerRepo {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Customer> findByLoanStatus() { 
-//		String query = "select c from Customer c inner join c.documentDetails d inner join c.incomeDetails i "
-//				+ "inner join c.loan l inner join l.propertyDetails where l.loanStatus='eligible'";
 		String query = "select c from Customer c inner join c.loan l where l.loanStatus='eligible'";
 		return entityManager
 				.createQuery(query)

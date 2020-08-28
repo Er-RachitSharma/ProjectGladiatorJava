@@ -41,6 +41,8 @@ public class AdminController {
 	
 	
 	
+	//Admin approves/rejects the application
+	
 	@GetMapping("/update")
 	public void updateLoanStatus(@RequestParam("customerId") long id, @RequestParam("loanStatus") String loanStatus, HttpServletRequest request) {
 		Loan loan = adminCustomerRepo.findLoanByCustomerId(id);
